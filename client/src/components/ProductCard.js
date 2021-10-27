@@ -7,7 +7,8 @@ import { CardContent } from '@mui/material'
 import { Button } from '@mui/material'
 
 
-const ProductCard = () => {
+const ProductCard = (cloth) => {
+  console.log(cloth)
     return (
         <div>
             <Card
@@ -19,15 +20,15 @@ const ProductCard = () => {
                         // 16:9
                         pt: '0%',
                       }}
-                      image
+                      image={cloth.cloth.image}
                       alt="random"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        
+                        {cloth.cloth.name}
                       </Typography>
                       <Typography gutterBottom variant="h6" component="h2">
-                        
+                      ${cloth.cloth.price}.99
                       </Typography>
                       <Typography>
                         
