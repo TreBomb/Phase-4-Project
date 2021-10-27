@@ -8,7 +8,7 @@ class BrandsController < ApplicationController
     def show
         @brand = Brand.find(params[:id])
         if @brand
-            render json: @brand
+            render json: @brand, serializer: BrandProductsSerializer
         else
             render json: {error: "Brand not found"}, status: 404
         end
