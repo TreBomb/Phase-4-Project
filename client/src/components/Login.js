@@ -31,7 +31,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+export default function SignInSide( { setLogin } ) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +46,10 @@ export default function SignInSide() {
     };
     fetch('http://localhost:3000/login', requestOptions)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => {
+      console.log(data)
+      setLogin(data.id)
+    });
     // console.log({
     //   username: data.get('username'),
     //   password: data.get('password'),
