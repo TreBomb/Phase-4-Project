@@ -1,3 +1,5 @@
+user1 = User.create(username: 'admin', email: 'admin@admin.com', password: 'admin', password_confirmation: 'admin', admin: true)
+
 brands = Brand.create([
     {
         name: "Nike",

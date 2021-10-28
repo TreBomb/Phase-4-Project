@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
     def index
-        @products = Product.all
+        @products = Product.all.shuffle
         render json: @products
     end
 

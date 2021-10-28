@@ -18,7 +18,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        We-Commerce
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,11 +32,34 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
+    const details = {
       email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
-    });
+      password_confirmation: data.get('password_confirmation')
+    };
+    if (details && details['password'] === details['password_confirmation']) {
+      alert('Sign Up Successful');
+      
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(details)
+      };
+      fetch('http://localhost:3000/signup', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data));
+
+    } else {
+      alert('Please make sure all of the data is filled in and correct');
+    }
+    // eslint-disable-next-line no-console
+    // console.log({
+    //   email: data.get('email'),
+    //   username: data.get('username'),
+    //   password: data.get('password'),
+    //   password_confirmation: data.get('password_confirmation'),
+    // });
   };
 
   return (
@@ -74,6 +97,16 @@ export default function SignInSide() {
               Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+              />
               <TextField
                 margin="normal"
                 required
@@ -93,6 +126,16 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password_confirmation"
+                label="Confirm Password"
+                type="password_confirmation"
+                id="password_confirmation"
+                autoComplete="password_confirmation"
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
