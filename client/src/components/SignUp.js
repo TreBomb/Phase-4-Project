@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useHistory } from "react-router-dom"
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,6 +30,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide({ setLogin }) {
+  let history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -51,6 +53,7 @@ export default function SignInSide({ setLogin }) {
       .then(data => {
         console.log(data)
         setLogin(data.id)
+        history.push("/main")
       });
 
     } else {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp"
 import Navbar from "./NavBar";
@@ -13,6 +13,10 @@ import ItemPage from "./ItemPage";
 function App() {
     const [login, setLogin] = useState("");
     const [userInfo, setUserInfo] = useState({});
+
+    // if (login !== "") {
+    //   history.push("/main");
+    // }
     
     useEffect(() => {
       const loggedInUser = localStorage.getItem("user");
@@ -21,7 +25,7 @@ function App() {
 
         console.log(loggedInUser)
 
-        fetch(`http://localhost:3000/user`)
+        fetch(`http://localhost:3000/users/${login}`)
         .then(resp => resp.json())
         .then(data => {
           console.log(data)
@@ -30,6 +34,7 @@ function App() {
             email: data.email,
             id: data.id
           })
+          setLogin(loggedInUser)
         })
       }
     }, [])
@@ -37,7 +42,7 @@ function App() {
     useEffect(() => {
     if (login !== "") {
       console.log(login)
-      fetch(`http://localhost:3000/user`)
+      fetch(`http://localhost:3000/users/${login}`)
       .then(resp => resp.json())
       .then(data => {
         console.log(data)
@@ -46,7 +51,7 @@ function App() {
           email: data.email,
           id: data.id
         })
-        localStorage.setItem('user', [data.id])
+        localStorage.setItem('user', login)
       })
     }
     }, [login])
@@ -56,7 +61,7 @@ function App() {
       <div>
         <Switch>
             <Route exact path="/">
-              <Login setLogin={setLogin} />
+              <Login login={login} setLogin={setLogin} />
             </Route>
             <Route  exact path="/signup">
               <SignUp setLogin={setLogin} />

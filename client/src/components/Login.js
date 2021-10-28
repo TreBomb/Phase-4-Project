@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,7 +31,13 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide( { setLogin } ) {
+export default function SignInSide( { login, setLogin } ) {
+  let history = useHistory();
+
+  if (login !== "") {
+    history.push("/main");
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,6 +55,7 @@ export default function SignInSide( { setLogin } ) {
     .then(data => {
       console.log(data)
       setLogin(data.id)
+      history.push("/main")
     });
     // console.log({
     //   username: data.get('username'),
