@@ -5,10 +5,11 @@ import { Typography } from '@mui/material'
 import { CardActions } from '@mui/material'
 import { CardContent } from '@mui/material'
 import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 
 const ProductCard = (cloth) => {
-  console.log(cloth)
+  // console.log(cloth)
     return (
         <div>
             <Card
@@ -31,11 +32,13 @@ const ProductCard = (cloth) => {
                       ${cloth.cloth.price}.99
                       </Typography>
                       <Typography>
-                        
+                        {cloth.cloth.description}
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small">View</Button>
+                      <Link to={`/product/${cloth.cloth.id}`}>
+                        <Button size="small">View</Button>
+                      </Link>
                       <Button size="small">Edit</Button>
                     </CardActions>
                   </Card>
