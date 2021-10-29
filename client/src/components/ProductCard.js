@@ -25,12 +25,12 @@ const ProductCard = (cloth) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   const rate = event.target.value;
-  // eslint-disable-next-line no-console
+  console.log(rate)
   const update = {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      rating: rate,
+      rating: rate
     })
   };
   fetch(`http://localhost:3000/products/${cloth.cloth.id}`, update)
@@ -79,21 +79,21 @@ const handleSubmit = (event) => {
         <DialogTitle>Change the rating of your favorite pieces!</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Slecet a number between 1 and 5
+            Select a number between 1 and 5
           </DialogContentText>
-          <TextField component="form" noValidate onSubmit={handleSubmit}
+          <TextField component="form" onSubmit={handleSubmit}
             autoFocus
             margin="dense"
             id="name"
             label="Rating"
-            type="email"
+            type="number"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button >Submit</Button>
         </DialogActions>
       </Dialog>
         </div>

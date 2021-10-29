@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 const ProductList = (clothes) => {
     const arrayClothes = clothes.clothes
     const classes = useStyles();
-    console.log(arrayClothes)
     if (Object.keys(clothes).length !== 0) {
     return (
         <div>
