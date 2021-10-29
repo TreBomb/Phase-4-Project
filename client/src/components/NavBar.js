@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import SvgIcon from '@mui/material/SvgIcon';
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from '@mui/material'
@@ -27,8 +27,17 @@ function HomeIcon(props) {
     );
   }
 
-const NavBar = () => {
+const NavBar = ({ login, setLogin }) => {
+    let history = useHistory();
     const classes = useStyles();
+
+    const handleClick = (event) => {
+      event.preventDefault();
+      localStorage.removeItem('user');
+      setLogin("");
+      history.push("/");
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -41,7 +50,7 @@ const NavBar = () => {
           <Typography variant="h6" color="inherit" component="div">
             We-Commerce
           </Typography>
-          <Button variant="text"  class={classes.button} color="inherit">Logout</Button>
+          <Button variant="text" onClick={handleClick} class={classes.button} color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>

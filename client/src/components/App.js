@@ -68,15 +68,15 @@ function App() {
               <SignUp setLogin={setLogin} />
             </Route>
             <Route exact path="/main">
-              <Navbar/>
+              <Navbar login={login} setLogin={setLogin} />
               <Main/>
             </Route>
             <Route exact path="/brand/:id">
-              <Navbar/>
+              <Navbar login={login} setLogin={setLogin} />
               <Brand/>
             </Route>
             <Route exact path="/product/:id">
-              <Navbar/>
+              <Navbar login={login} setLogin={setLogin} />
               <ItemPage/>
             </Route>
         </Switch>
