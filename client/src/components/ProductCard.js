@@ -22,9 +22,23 @@ const ProductCard = (cloth) => {
   const handleClickOpen = () => {
   setOpen(true);
 };
-  const handleSubmit = () => {
-    
-  }
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const rate = event.target.value;
+  // eslint-disable-next-line no-console
+  const update = {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      rating: rate,
+    })
+  };
+  fetch(`http://localhost:3000/products/${cloth.cloth.id}`, update)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+  });
+};
   const handleClose = () => {
     setOpen(false);
   };
@@ -67,7 +81,7 @@ const ProductCard = (cloth) => {
           <DialogContentText>
             Slecet a number between 1 and 5
           </DialogContentText>
-          <TextField
+          <TextField component="form" noValidate onSubmit={handleSubmit}
             autoFocus
             margin="dense"
             id="name"
@@ -79,7 +93,7 @@ const ProductCard = (cloth) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </DialogActions>
       </Dialog>
         </div>
