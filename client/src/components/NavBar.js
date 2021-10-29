@@ -34,6 +34,9 @@ const NavBar = ({ login, setLogin }) => {
     const handleClick = (event) => {
       event.preventDefault();
       localStorage.removeItem('user');
+      fetch(`http://localhost:3000/logout`)
+      .then(resp => resp.json())
+      .then(data => console.log(data))
       setLogin("");
       history.push("/");
     };
