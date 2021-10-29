@@ -22,6 +22,16 @@ class ProductsController < ApplicationController
         end
     end
 
+    def update
+        @product = Product.find(params[:id])
+        if @product
+            @product.update(update_params)
+            render json: @product, status: :ok
+        else
+            render json: {error: "Nothing changed"}, status: 400
+        end  
+    end
+    
     def destroy
         @product = Product.find(params[:id])
         if @product
@@ -36,5 +46,8 @@ class ProductsController < ApplicationController
 
     def product_params
         params.require(:product).permit(:name, :description, :image, :price, :rating, :brand_id)
+    end
+    def update_params
+        params.permit(:rating)
     end
 end
