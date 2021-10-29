@@ -1,5 +1,4 @@
 import React, {useState, useEffect } from 'react'
-import { useTheme } from '@mui/material/styles';
 import { useParams } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -20,8 +19,6 @@ const ItemPage = () => {
           .then(setProduct);
       }, [idNumber, product]);
     //   console.log(product)
-      const theme = useTheme();
-     
       return (
         <Card sx={{ display: 'flex' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: "center" }}>

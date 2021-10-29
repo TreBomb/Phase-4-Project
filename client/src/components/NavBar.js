@@ -4,16 +4,33 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import SvgIcon from '@mui/material/SvgIcon';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    header: {
+      paddingTop: "100px",
+    }, 
+  }));
+
+function HomeIcon(props) {
+    return (
+      <SvgIcon {...props}>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </SvgIcon>
+    );
+  }
+
 const NavBar = () => {
+    const classes = useStyles();
     return (
         <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar classname={classes.header} position="static">
         <Toolbar variant="dense">
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 1 }}>
             <Link to="/main">
-                <MenuIcon />
+                <HomeIcon />
             </Link>
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">

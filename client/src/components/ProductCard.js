@@ -6,6 +6,7 @@ import { CardActions } from '@mui/material'
 import { CardContent } from '@mui/material'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import Rating from '@mui/material/Rating';
 
 
 const ProductCard = (cloth) => {
@@ -32,7 +33,7 @@ const ProductCard = (cloth) => {
                       ${cloth.cloth.price}.99
                       </Typography>
                       <Typography>
-                        {cloth.cloth.description}
+                        <Rating name="read-only" value={cloth.cloth.rating} readOnly />
                       </Typography>
                     </CardContent>
                     <CardActions>
