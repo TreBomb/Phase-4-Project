@@ -6,6 +6,7 @@ import Navbar from "./NavBar";
 import Main from "./Main";
 import Brand from "./Brand";
 import ItemPage from "./ItemPage";
+import BrandSelect from "./BrandSelect";
 
 
 
@@ -13,6 +14,12 @@ import ItemPage from "./ItemPage";
 function App() {
     const [login, setLogin] = useState("");
     const [userInfo, setUserInfo] = useState({});
+    const [brands, setBrands] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:3000/brands")
+          .then((r) => r.json())
+          .then(setBrands);
+      }, []);
    
 
     // if (login !== "") {
@@ -69,10 +76,12 @@ function App() {
             </Route>
             <Route exact path="/main">
               <Navbar login={login} setLogin={setLogin} />
+              <BrandSelect brands={brands}/>
               <Main/>
             </Route>
             <Route exact path="/brand/:id">
               <Navbar login={login} setLogin={setLogin} />
+              <BrandSelect brands={brands}/>
               <Brand/>
             </Route>
             <Route exact path="/product/:id">

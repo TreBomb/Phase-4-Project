@@ -8,6 +8,7 @@ import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
+import BrandSelect from './BrandSelect';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -38,12 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = () => {
     const [clothes, setClothes] = useState({})
-    const [brands, setBrands] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:3000/brands")
-          .then((r) => r.json())
-          .then(setBrands);
-      }, []);
   useEffect(() => {
       fetch("http://localhost:3000/products")
         .then((r) => r.json())
@@ -54,32 +49,6 @@ const Main = () => {
     if (Object.keys(clothes).length !== 0) {
     return (
         <div className={classes.header}>
-           <Typography
-                  component="h1"
-                  variant="h2"
-                  align="center"
-                  color="text.primary"
-                  gutterBottom
-                >
-                  We-Commerce
-                </Typography>
-                <Grid container spacing={2} className={classes.root}>
-                    {brands.map((brand) => (
-                        <Link to={`/brand/${brand.id}`}>
-                        <Grid item xs={12} sm={6} md={4}>
-                        <ButtonBase className={classes.button} sx={{ width: 128, height: 128 }} 
-                            {...{
-                                key: brand.name,
-                                color: "inherit",
-                                to: `/brand/${brand.id}`,
-                                component: Link,
-                             }}>
-                            <Img alt="complex" src={brand.image}/>
-                         </ButtonBase>
-                    </Grid>
-                    </Link>
-                    ))}  
-                </Grid>
             <Container sx={{ py: 8 }} maxWidth="md">
             {/* End hero unit */}
             <Grid container spacing={6}>
